@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0">
+  <info>
+    <title>International Journal of Energy Economics and Policy</title>
+    <id>http://www.zotero.org/styles/international-journal-of-energy-economics-and-policy</id>
+    <link href="http://www.zotero.org/styles/international-journal-of-energy-economics-and-policy" rel="self"/>
+    <author>
+      <name>Custom adaptation for IJEEP</name>
+    </author>
+    <category citation-format="author-date"/>
+    <updated>2025-07-20T12:00:00Z</updated>
+  </info>
+
+  <!-- AUTHOR MACROS -->
+  <macro name="author">
+    <names variable="author">
+      <name form="long" and="text" delimiter=", "/>
+    </names>
+  </macro>
+
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", "/>
+      <et-al/>
+    </names>
+  </macro>
+
+  <macro name="title">
+    <text variable="title"/>
+  </macro>
+
+  <!-- CITATION -->
+  <citation et-al-min="3" et-al-use-first="3" disambiguate-add-year-suffix="true">
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <text macro="author-short"/>
+      <date variable="issued">
+        <date-part name="year"/>
+      </date>
+    </layout>
+  </citation>
+
+  <!-- BIBLIOGRAPHY -->
+  <bibliography et-al-min="4" et-al-use-first="4" hanging-indent="true">
+    <sort>
+      <key macro="author"/>
+      <key variable="issued"/>
+    </sort>
+    <layout delimiter=". ">
+      <text macro="author"/>
+      <date variable="issued" prefix=" (" suffix=")"/>
+      <text macro="title" prefix=", "/>
+      <choose>
+        <!-- JOURNAL ARTICLE -->
+        <if type="article-journal article-magazine">
+          <text variable="container-title" form="long" font-style="italic" prefix=". "/>
+          <group delimiter=", ">
+            <text variable="volume"/>
+            <text variable="issue" prefix="(" suffix=")"/>
+          </group>
+          <text variable="page" prefix=", " suffix="."/>
+          <text variable="DOI" prefix=" https://doi.org/"/>
+        </if>
+
+        <!-- BOOK -->
+        <else-if type="book">
+          <group delimiter=": ">
+            <text variable="publisher-place"/>
+            <text variable="publisher"/>
+          </group>
+          <text variable="page" prefix=", " suffix="."/>
+        </else-if>
+
+        <!-- CHAPTER -->
+        <else-if type="chapter">
+          <group delimiter=", ">
+            <text variable="container-title" prefix=", in: "/>
+            <names variable="editor">
+              <label form="short" prefix="(" suffix=" ed.)"/>
+            </names>
+            <text term="chapter" prefix=", chapter "/>
+            <text variable="page" prefix=" pp. "/>
+            <text variable="publisher" prefix=". "/>
+            <text variable="publisher-place" prefix=": "/>
+          </group>
+          <text variable="issued" prefix=" " suffix="."/>
+        </else-if>
+
+        <!-- WEBPAGE -->
+        <else-if type="webpage">
+          <text variable="URL" prefix=". Disponible en: "/>
+          <date variable="accessed" prefix=" (consulta: ">
+            <date-part name="day"/> <date-part name="month" form="long"/> <date-part name="year"/>
+          </date>
+          <text value=")"/>
+        </else-if>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
